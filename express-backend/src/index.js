@@ -1,7 +1,7 @@
 const logger = require("./services/log/")
 const database = require("./services/database")
 const app = require("./app")
-
+require('dotenv').config('../.env')
 const envValidator = require("./config/config")
 
 logger.info("Checking configuration...")

@@ -1,4 +1,5 @@
 const logger = require("../services/log")
+require('dotenv').config('../.env')
 
 const DEFAULT_BACK_HOST = "localhost"
 const DEFAULT_BACK_PORT = 3080
