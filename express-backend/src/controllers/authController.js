@@ -2,7 +2,7 @@ function AuthController(database, logger) {
 
     this.database = database
     this.logger = logger
-
+    require('dotenv').config('../.env')
     const CONST = require("../utils/constants")
     const bcrypt = require("bcrypt")
     const DuplicatedEmailError = require("../utils/customErrors")
@@ -90,7 +90,7 @@ function AuthController(database, logger) {
         }
         const token = jwtUtil.generateJWT(user.id, user.email, userProfile.id)
         response.cookie("jwt", token, { httpOnly: true, maxAge: CONST.maxAgeCookieExpired })
-        response.redirect(process.env.SUCCESSFUL_LOGIN_REDIRECT)
+        response.redirect("http://" + process.env.FRONT_HOST + ":" + process.env.FRONT_PORT + "/login/success")
     }
 
     this.oauthGoogleLogin = async (request, response) => {
@@ -111,7 +111,7 @@ function AuthController(database, logger) {
         }
         const token = jwtUtil.generateJWT(user.id, user.email, userProfile.id)
         response.cookie("jwt", token, { httpOnly: true, maxAge: CONST.maxAgeCookieExpired })
-        response.redirect(process.env.SUCCESSFUL_LOGIN_REDIRECT)
+        response.redirect("http://" + process.env.FRONT_HOST + ":" + process.env.FRONT_PORT + "/login/success")
     }
 
     //#region Auxiliar methods
